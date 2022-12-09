@@ -4,13 +4,13 @@
 
 void getNome(char nome[]){
 	//substitua por seu nome
-	strncpy(nome, "Paulo Ricardo Lisboa de Almeida", MAX_CHAR_NOME);
+	strncpy(nome, "Pedro Folloni Pesserl", MAX_CHAR_NOME);
 	nome[MAX_CHAR_NOME-1] = '\0';//adicionada terminação manual para caso de overflow
 }
 
 //a função a seguir deve retornar o seu número de GRR
 unsigned int getGRR(){
-	return 1234;
+	return 0072;
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int* numComparacoes){
