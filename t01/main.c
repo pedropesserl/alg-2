@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 #include "ordenacao.h"
 
-int main(){
+int main() {
 	char nome[MAX_CHAR_NOME];
 	int idxBusca;
 	int numComp;
 
-	//Dica: somente é posśivel criar vetores grandes utilizando alocação dinâmica de memória
+	//Dica: somente é possível criar vetores grandes utilizando alocação dinâmica de memória
 	//Veja um exemplo de alocação dinâmica a seguir
 	int tamVetor = 3;
 	int* vetor = malloc(tamVetor * sizeof(int));
-	if(vetor == NULL){
+	if (vetor == NULL) {
 		printf("Falha fatal. Impossível alocar memoria.");
 		return 1;
 	}
@@ -44,7 +43,7 @@ int main(){
 	numComp = quickSort(vetor, 3);
 	numComp = heapSort(vetor, 3);
 
-	for(int i=0; i < 3; i++){
+	for (int i=0; i < 3; i++) {
 		printf("%d ", vetor[i]);
 	}
 	idxBusca = buscaSequencial(vetor, 3, 10, &numComp);
