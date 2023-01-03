@@ -13,16 +13,22 @@ int *le_vetor(int tam) {
 	return v;
 }
 
+void imprime_vetor(int *v, int tam) {
+	for (int i = 0; i < tam; i++)
+		printf("%d ", v[i]);
+	printf("\n");
+}
+
 int main() {
 	int *vetor;
 	int tam = 10;
 	vetor = le_vetor(tam);
-	
-	int num = 0;
-	int *numComparacoes = &num;
-	printf("busca: %d\n", buscaSequencial(vetor, tam, 10, numComparacoes));
-	
-	printf("numero de comparacoes: %d\n", *numComparacoes);
+
+	int numComparacoes = insertionSort(vetor, tam);
+
+	printf("vetor ordenado: \n");
+	imprime_vetor(vetor, tam);
+	printf("numero de comparacoes: %d\n", numComparacoes);
 	free(vetor);
 	return 0;
 }

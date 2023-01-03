@@ -14,44 +14,77 @@ unsigned int getGRR() {
 
 int aux_buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
 	(*numComparacoes)++;
-	if (valor == vetor[tam-1]) return tam-1;
+	if (valor == vetor[tam-1])
+		return tam-1;
 
 	return aux_buscaSequencial(vetor, tam-1, valor, numComparacoes);
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
-	if (tam < 1) return -1;
+	*numComparacoes = 0;
+	if (tam < 1)
+		return -1;
 
 	(*numComparacoes)++;
-	if(valor > vetor[tam-1]) return -1;
+	if(valor > vetor[tam-1])
+		return -1;
 	
 	(*numComparacoes)++;
-	if (valor < vetor[0]) return -1;
+	if (valor < vetor[0])
+		return -1;
 
 	return aux_buscaSequencial(vetor, tam, valor, numComparacoes);
 }
 
 int aux_buscaBinaria(int vetor[], int inicio, int fim, int valor, int *numComparacoes) {
-	if (fim - inicio < 0) return -1;
+	if (fim - inicio < 0)
+		return -1;
 
 	int m = (fim + inicio) / 2;
 
 	(*numComparacoes)++;
-	if (valor == vetor[m]) return m;
+	if (valor == vetor[m])
+		return m;
 
 	(*numComparacoes)++;
-	if (valor < vetor[m]) return aux_buscaBinaria(vetor, inicio, m-1, valor, numComparacoes);
+	if (valor < vetor[m])
+		return aux_buscaBinaria(vetor, inicio, m-1, valor, numComparacoes);
 
 	return aux_buscaBinaria(vetor, m+1, fim, valor, numComparacoes);
 }
 
 int buscaBinaria(int vetor[], int tam, int valor, int *numComparacoes) {
+	*numComparacoes = 0;
 	return aux_buscaBinaria(vetor, 0, tam-1, valor, numComparacoes);
 }
 
+void troca(int *a, int *b) {
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+void insere_ultimo(int vetor[], int tam, int *numComparacoes) {
+	if (tam <= 1)
+		return;
+	(*numComparacoes)++;
+	if (vetor[tam-1] >= vetor[tam-2])
+		return;
+	
+	troca(vetor + tam-1, vetor + tam-2);
+
+	insere_ultimo(vetor, tam-1, numComparacoes);
+}
+// TODO: descobrir por que a contagem de comparacoes nao funciona
 int insertionSort(int vetor[], int tam) {
-	vetor[0] = 99;
-	return -1;
+	static int numComparacoes = 0;
+
+	if (tam <= 1)
+		return 0;
+
+	numComparacoes += insertionSort(vetor, tam-1);
+	insere_ultimo(vetor, tam, &numComparacoes);
+	return numComparacoes;
 }
 
 int selectionSort(int vetor[], int tam) {
