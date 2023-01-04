@@ -64,26 +64,26 @@ void troca(int *a, int *b) {
 	*b = temp;
 }
 
-void insere_ultimo(int vetor[], int tam, int *numComparacoes) {
+int insereUltimo(int vetor[], int tam) {
 	if (tam <= 1)
-		return;
-	(*numComparacoes)++;
+		return 0;
+
 	if (vetor[tam-1] >= vetor[tam-2])
-		return;
+		return 1;
 	
 	troca(vetor + tam-1, vetor + tam-2);
 
-	insere_ultimo(vetor, tam-1, numComparacoes);
+	return insereUltimo(vetor, tam-1) + 1;
 }
-// TODO: descobrir por que a contagem de comparacoes nao funciona
+
 int insertionSort(int vetor[], int tam) {
 	static int numComparacoes = 0;
 
 	if (tam <= 1)
 		return 0;
 
-	numComparacoes += insertionSort(vetor, tam-1);
-	insere_ultimo(vetor, tam, &numComparacoes);
+	insertionSort(vetor, tam-1);
+	numComparacoes += insereUltimo(vetor, tam);
 	return numComparacoes;
 }
 

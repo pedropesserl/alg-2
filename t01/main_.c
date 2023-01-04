@@ -3,25 +3,66 @@
 #include <time.h>
 #include "ordenacao.h"
 
+void inicializarOrdenado(int *vetor, int tam) {
+	for (int i = 0; i < tam; i++)
+		vetor[i] = i;
+}
+
+void inicializarAoContrario(int *vetor, int tam) {
+	for (int i = 0; i < tam; i++)
+		vetor[i] = tam - i;
+}
+
+void inicializarAleatorio(int *vetor, int tam) {
+	for (int i = 0; i < tam; i++)
+		vetor[i] = rand() % (tam + 1);
+}
+
+int inicializarVetoresParaTeste(int *ordenado, int *copia_ordenado,
+								int *aoContrario, int *copia_aoContrario,
+								int *aleatorio, int * copia_aleatorio) {
+	if ( !(ordenado = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	inicializarOrdenado(ordenado, tamVetor);
+
+	if ( !(copia_ordenado = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	memcpy(copia_ordenado, ordenado, tamVetor);
+
+	if ( !(aoContrario = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	inicializarAoContrario(aoContrario, tamVetor);
+
+	if ( !(copia_aoContrario = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	memcpy(copia_aoContrario, aoContrario, tamVetor);
+
+	if ( !(aleatorio = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	inicializarAleatorio(aleatorio, tamVetor);
+
+	if ( !(copia_aleatorio = malloc((tamVetor + 10) * sizeof(int))) )
+		return 0;
+	memcpy(copia_aleatorio, aleatorio, tamVetor);
+
+	return 1;
+}
+
 int main() {
+	srand(0);
+
 	char nome[MAX_CHAR_NOME];
 	int idxBusca;
 	int numComp;
 
-	//Dica: somente é possível criar vetores grandes utilizando alocação dinâmica de memória
-	//Veja um exemplo de alocação dinâmica a seguir
-	int tamVetor = 3;
-	int *vetor = malloc(tamVetor * sizeof(int));
-	if (vetor == NULL) {
+	const int tamVetor = 65000;
+
+	int *ordenado, ordenado_, aoContrario, aoContrario_, aleatorio, aleatorio_;
+
+	if ( !(inicializarVetoresParaTeste(ordenado, ordenado_, aoContrario, aoContrario_, aleatorio, aleatorio_)) ) {
 		printf("Falha fatal. Impossível alocar memoria.");
 		return 1;
-	}
-	//Depois de alocado, o vetor pode ser utilizado normalmente
-	//Não esqueça de desalocar no final do programa via free
-		
-	vetor[0] = 1;
-	vetor[1] = 10;
-	vetor[2] = 12;
+	} // inicializa 3 vetores para testes
 
 	getNome(nome);
 	printf("Trabalho de %s\n", nome);
@@ -53,7 +94,9 @@ int main() {
 	printf("\n");
 
 	//É obrigatório que você libere a memória alocada dinamicamente via free
-	free(vetor);
+	free(ordenado);
+	free(aoContrario);
+	free(aleatorio);
 
 	return 0;
 }
