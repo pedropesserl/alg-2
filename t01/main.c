@@ -2,6 +2,32 @@
 #include <stdlib.h>
 #include "ordenacao.h"
 
+/* void trocar(int *a, int *b) { */
+/* 	int temp = *a; */
+/* 	*a = *b; */
+/* 	*b = temp; */
+/* } */
+
+/* int menor(int vetor[], int tam, int *numComparacoes) { */
+/* 	if (tam == 1) */
+/* 		return 0; */
+
+/* 	int m = menor(vetor, tam-1, numComparacoes); */
+	
+/* 	(*numComparacoes)++; */
+/* 	return vetor[tam-1] < vetor[m] ? tam-1 : m; */
+/* } */
+
+/* void temp_selectionSort(int vetor[], int inicio, int fim, int *numComparacoes) { */
+/* 	if (fim - inicio <= 0) */
+/* 		return; */
+
+/* 	int m = menor(vetor, fim - inicio + 1, numComparacoes); */
+/* 	trocar(vetor + inicio, vetor + m); */
+
+/* 	temp_selectionSort(vetor, inicio+1, fim, numComparacoes); */
+/* } */
+
 int *le_vetor(int tam) {
 	int *v;
 	if ( !(v = malloc(50010 * sizeof(int))) ) return NULL;
@@ -21,16 +47,13 @@ void imprime_vetor(int *v, int tam) {
 
 int main() {
 	int *vetor;
-	if ( !(vetor = malloc(65010 * sizeof(int))) ) return 1;
-	int tam = 65000;
-	for (int i = 0; i < tam; i++) {
-		vetor[i] = 65000 - i;
-	}
-
-	int numComparacoes = insertionSort(vetor, tam);
-
-	/* printf("vetor ordenado: \n"); */
-	/* imprime_vetor(vetor, tam); */
+	int tam = 10;
+	if ( !(vetor = malloc(tam * sizeof(int))) ) return 1;
+	vetor = le_vetor(tam);
+	
+	int numComparacoes = selectionSort(vetor, tam);
+	/* printf("posicao do minimo: %d\n", menor(vetor, tam, &numComparacoes)); */
+	imprime_vetor(vetor, tam);
 	printf("numero de comparacoes: %d\n", numComparacoes);
 	
 	free(vetor);

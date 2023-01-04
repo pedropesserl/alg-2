@@ -21,7 +21,6 @@ int aux_buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
 }
 
 int buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
-	*numComparacoes = 0;
 	if (tam < 1)
 		return -1;
 
@@ -37,7 +36,7 @@ int buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
 }
 
 int aux_buscaBinaria(int vetor[], int inicio, int fim, int valor, int *numComparacoes) {
-	if (fim - inicio < 0)
+	if (inicio > fim)
 		return -1;
 
 	int m = (fim + inicio) / 2;
@@ -54,7 +53,6 @@ int aux_buscaBinaria(int vetor[], int inicio, int fim, int valor, int *numCompar
 }
 
 int buscaBinaria(int vetor[], int tam, int valor, int *numComparacoes) {
-	*numComparacoes = 0;
 	return aux_buscaBinaria(vetor, 0, tam-1, valor, numComparacoes);
 }
 
@@ -77,19 +75,35 @@ int insereUltimo(int vetor[], int tam) {
 }
 
 int insertionSort(int vetor[], int tam) {
-	static int numComparacoes = 0;
-
 	if (tam <= 1)
 		return 0;
 
-	insertionSort(vetor, tam-1);
-	numComparacoes += insereUltimo(vetor, tam);
-	return numComparacoes;
+	return insertionSort(vetor, tam-1) + insereUltimo(vetor, tam);
 }
 
+int maximo(int vetor[], int tam, int *numComparacoes) {
+	if (tam == 1)
+		return 0;
+
+	int maior = maximo(vetor, tam-1, numComparacoes);
+	
+	(*numComparacoes)++;
+	return vetor[tam-1] > vetor[maior] ? tam-1 : maior;
+}
+
+//para não precisar de uma função auxiliar, o selectionSort ordena
+//colocando o maior elemento na última posição, em vez do menor elemento
+//na primeira.
 int selectionSort(int vetor[], int tam) {
-	vetor[0] = 99;
-	return -1;
+	if (tam <= 0)
+		return 0;
+	
+	int comparacoesMaximo = 0;
+
+	int m = maximo(vetor, tam, &comparacoesMaximo);
+	troca(vetor + tam-1, vetor + m);
+
+	return selectionSort(vetor, tam-1) + comparacoesMaximo;
 }
 
 int mergeSort(int vetor[], int tam) {
