@@ -27,6 +27,15 @@ int buscaBinaria(int vetor[], int tam, int valor, int* numComparacoes);
 //O retorno das funções de ordenação é o número de comparações
 //entre elementos do vetor
 
+//
+//
+//
+/* int intercala(int vetorA[], int tamA, int vetorB[], int tamB, int novo[]); */
+int intercalaWrapper(int vetor[], int inicio, int meio, int fim, int novo[]);
+//
+//
+//
+
 int insertionSort(int vetor[], int tam);
 
 int selectionSort(int vetor[], int tam);

@@ -1,4 +1,6 @@
+#include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "ordenacao.h"
 
 void getNome(char nome[]) {
@@ -95,7 +97,7 @@ int maximo(int vetor[], int tam, int *numComparacoes) {
 //colocando o maior elemento na última posição, em vez do menor elemento
 //na primeira.
 int selectionSort(int vetor[], int tam) {
-	if (tam <= 0)
+	if (tam < 1)
 		return 0;
 	
 	int comparacoesMaximo = 0;
@@ -106,9 +108,45 @@ int selectionSort(int vetor[], int tam) {
 	return selectionSort(vetor, tam-1) + comparacoesMaximo;
 }
 
+int intercala(int vetorA[], int tamA, int vetorB[], int tamB, int novo[]) {
+	if (tamA < 1 && tamB < 1)
+		return 0;
+	
+	if (tamA > 0 && (tamB <= 0 || vetorA[0] < vetorB[0])) {
+		novo[0] = vetorA[0];
+		return intercala(vetorA + 1, tamA-1, vetorB, tamB, novo + 1) + 1;
+	}
+
+	novo[0] = vetorB[0];
+	return intercala(vetorA, tamA, vetorB + 1, tamB-1, novo + 1) + 1;
+}
+
+int aux_mergeSort(int vetor[], int inicio, int fim, int novo[]) {
+	if (inicio >= fim)
+		return 0;
+
+	int meio = (fim + inicio) / 2;
+
+	int numComparacoes = 0;
+	
+	numComparacoes += aux_mergeSort(vetor, inicio, meio, novo);
+	numComparacoes += aux_mergeSort(vetor, meio + 1, fim, novo);
+	numComparacoes += intercala(vetor + inicio, meio - inicio + 1, vetor + meio + 1, fim - meio, novo);
+
+	for (int i = 0; i <= fim - inicio; i++)
+		vetor[i + inicio] = novo[i];
+
+	return numComparacoes;
+}
+
 int mergeSort(int vetor[], int tam) {
-	vetor[0] = 99;
-	return -1;
+	int *novo;
+	if ( !(novo = malloc(tam * sizeof(int))) )
+		return 0;
+
+	return aux_mergeSort(vetor, 0, tam-1, novo);
+
+	free(novo);
 }
 
 int quickSort(int vetor[], int tam) {
