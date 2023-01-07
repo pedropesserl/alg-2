@@ -108,17 +108,30 @@ int selectionSort(int vetor[], int tam) {
 	return selectionSort(vetor, tam-1) + comparacoesMaximo;
 }
 
-int intercala(int vetorA[], int tamA, int vetorB[], int tamB, int novo[]) {
+/* int intercala(int vetorA[], int tamA, int vetorB[], int tamB, int novo[]) { */
+/* 	if (tamA < 1 && tamB < 1) */
+/* 		return 0; */
+	
+/* 	if (tamA > 0 && (tamB <= 0 || vetorA[0] < vetorB[0])) { */
+/* 		novo[0] = vetorA[0]; */
+/* 		return intercala(vetorA + 1, tamA-1, vetorB, tamB, novo + 1) + 1; */
+/* 	} */
+
+/* 	novo[0] = vetorB[0]; */
+/* 	return intercala(vetorA, tamA, vetorB + 1, tamB-1, novo + 1) + 1; */
+/* } */
+
+int intercala(int vetor[], int posA, int posB, int tamA, int tamB, int novo[], int posNovo) {
 	if (tamA < 1 && tamB < 1)
 		return 0;
-	
-	if (tamA > 0 && (tamB <= 0 || vetorA[0] < vetorB[0])) {
-		novo[0] = vetorA[0];
-		return intercala(vetorA + 1, tamA-1, vetorB, tamB, novo + 1) + 1;
+
+	if (tamA > 0 && (tamB <= 0 || vetor[posA] < vetor[posB])) {
+		novo[posNovo] = vetor[posA];
+		return intercala(vetor, posA+1, posB, tamA-1, tamB, novo, posNovo+1) + 1;
 	}
 
-	novo[0] = vetorB[0];
-	return intercala(vetorA, tamA, vetorB + 1, tamB-1, novo + 1) + 1;
+	novo[posNovo] = vetor[posB];
+	return intercala(vetor, posA, posB+1, tamA, tamB-1, novo, posNovo+1) + 1;
 }
 
 int aux_mergeSort(int vetor[], int inicio, int fim, int novo[]) {
@@ -131,7 +144,8 @@ int aux_mergeSort(int vetor[], int inicio, int fim, int novo[]) {
 	
 	numComparacoes += aux_mergeSort(vetor, inicio, meio, novo);
 	numComparacoes += aux_mergeSort(vetor, meio + 1, fim, novo);
-	numComparacoes += intercala(vetor + inicio, meio - inicio + 1, vetor + meio + 1, fim - meio, novo);
+	/* numComparacoes += intercala(vetor + inicio, meio - inicio + 1, vetor + meio + 1, fim - meio, novo); */
+	numComparacoes += intercala(vetor, inicio, meio + 1, meio - inicio + 1, fim - meio, novo, 0);
 
 	for (int i = 0; i <= fim - inicio; i++)
 		vetor[i + inicio] = novo[i];
@@ -144,9 +158,11 @@ int mergeSort(int vetor[], int tam) {
 	if ( !(novo = malloc(tam * sizeof(int))) )
 		return 0;
 
-	return aux_mergeSort(vetor, 0, tam-1, novo);
+	int numComparacoes = aux_mergeSort(vetor, 0, tam-1, novo);
 
 	free(novo);
+
+	return numComparacoes;
 }
 
 int quickSort(int vetor[], int tam) {
