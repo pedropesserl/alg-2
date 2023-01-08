@@ -108,19 +108,6 @@ int selectionSort(int vetor[], int tam) {
 	return selectionSort(vetor, tam-1) + comparacoesMaximo;
 }
 
-/* int intercala(int vetorA[], int tamA, int vetorB[], int tamB, int novo[]) { */
-/* 	if (tamA < 1 && tamB < 1) */
-/* 		return 0; */
-	
-/* 	if (tamA > 0 && (tamB <= 0 || vetorA[0] < vetorB[0])) { */
-/* 		novo[0] = vetorA[0]; */
-/* 		return intercala(vetorA + 1, tamA-1, vetorB, tamB, novo + 1) + 1; */
-/* 	} */
-
-/* 	novo[0] = vetorB[0]; */
-/* 	return intercala(vetorA, tamA, vetorB + 1, tamB-1, novo + 1) + 1; */
-/* } */
-
 int intercala(int vetor[], int posA, int posB, int tamA, int tamB, int novo[], int posNovo) {
 	if (tamA < 1 && tamB < 1)
 		return 0;
@@ -144,7 +131,6 @@ int aux_mergeSort(int vetor[], int inicio, int fim, int novo[]) {
 	
 	numComparacoes += aux_mergeSort(vetor, inicio, meio, novo);
 	numComparacoes += aux_mergeSort(vetor, meio + 1, fim, novo);
-	/* numComparacoes += intercala(vetor + inicio, meio - inicio + 1, vetor + meio + 1, fim - meio, novo); */
 	numComparacoes += intercala(vetor, inicio, meio + 1, meio - inicio + 1, fim - meio, novo, 0);
 
 	for (int i = 0; i <= fim - inicio; i++)
@@ -165,9 +151,35 @@ int mergeSort(int vetor[], int tam) {
 	return numComparacoes;
 }
 
+int particiona(int vetor[], int inicio, int fim, int *pivo) {
+	if (inicio > fim)
+		return 0;
+	
+	if (vetor[inicio] <= vetor[fim]) {
+		(*pivo)++;
+		troca(vetor + *pivo, vetor + inicio);
+	}
+
+	return particiona(vetor, inicio + 1, fim, pivo) + 1;
+}
+
+int aux_quickSort(int vetor[], int inicio, int fim) {
+	if (inicio >= fim)
+		return 0;
+
+	int pivo = inicio - 1;
+
+	int numComparacoes = 0;
+
+	numComparacoes += particiona(vetor, inicio, fim, &pivo);
+	numComparacoes += aux_quickSort(vetor, inicio, pivo-1);
+	numComparacoes += aux_quickSort(vetor, pivo+1, fim);
+
+	return numComparacoes;
+}
+
 int quickSort(int vetor[], int tam) {
-	vetor[0] = 99;
-	return -1;
+	return aux_quickSort(vetor, 0, tam-1);
 }
 
 int heapSort(int vetor[], int tam) {

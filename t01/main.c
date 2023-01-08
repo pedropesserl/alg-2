@@ -21,48 +21,24 @@ void imprime_vetor(int *v, int tam) {
 }
 
 int main() {
-	// TESTE: INTERCALA RECURSIVO
-	/* int *vetor, *novo; */
-	/* int tam = 10; */
-
-	/* if ( !(novo = malloc(100 * sizeof(int))) ) return 1; */
-
-	/* vetor = le_vetor(tam); */	
-
-	/* int meio = (tam - 1 + 0) / 2; */
-
-	/* int numComparacoes = intercala(vetor, meio + 1, vetor + meio + 1, tam - 1 - meio, novo); */
-	/* imprime_vetor(vetor, tam); */
-	/* printf("numero de comparacoes: %d\n", numComparacoes); */
-	
-	/* free(vetor); free(novo); */
-	/* return 0; */
-
-	// TESTE: INTERCALA WRAPPER
-	/* int *vetor, *novo; */
-	/* int tam = 20; */
-	/* vetor = le_vetor(tam); */
-
-	/* if ( !(novo = malloc(100 * sizeof(int))) ) return 1; */
-
-	/* int numComparacoes = intercalaWrapper(vetor, 0, 14, 19, novo); */
-	/* imprime_vetor(vetor, tam); */
-	/* printf("numero de comparacoes: %d\n", numComparacoes); */
-	
-	/* free(vetor); */
-	/* return 0; */
-
-	// TESTE: MERGESORT
 	int *vetor;
-	int tam;
+	int tam; //indice_pivo;
+	printf("tamanho do vetor: ");
 	scanf("%d", &tam);
-
+	if ( !(vetor = malloc(tam * sizeof(int))) ) return 1;
 	vetor = le_vetor(tam);
 
-	int numComparacoes = mergeSort(vetor, tam);
+	// TESTE: QUICKSORT
+	int numComparacoes = quickSort(vetor, tam);
+
+	// TESTE: PARTICIONA
+	/* indice_pivo = -1; */
+	/* int numComparacoes = particiona(vetor, 0, tam-1, &indice_pivo, 0); */
+	/* int numComparacoes = particiona_iterativo(vetor, 0, tam-1, &indice_pivo); */
+	/* printf("indice: %d\n", indice_pivo); */
+
 	imprime_vetor(vetor, tam);
 	printf("numero de comparacoes: %d\n", numComparacoes);
-	
-	free(vetor);
+
 	return 0;
 }
