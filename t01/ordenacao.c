@@ -14,27 +14,15 @@ unsigned int getGRR() {
 	return 20220072;
 }
 
-int aux_buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
-	(*numComparacoes)++;
-	if (valor == vetor[tam-1])
-		return tam-1;
-
-	return aux_buscaSequencial(vetor, tam-1, valor, numComparacoes);
-}
-
 int buscaSequencial(int vetor[], int tam, int valor, int *numComparacoes) {
 	if (tam < 1)
 		return -1;
 
 	(*numComparacoes)++;
-	if(valor > vetor[tam-1])
-		return -1;
-	
-	(*numComparacoes)++;
-	if (valor < vetor[0])
-		return -1;
+	if (valor == vetor[tam-1])
+		return tam-1;
 
-	return aux_buscaSequencial(vetor, tam, valor, numComparacoes);
+	return buscaSequencial(vetor, tam-1, valor, numComparacoes);
 }
 
 int aux_buscaBinaria(int vetor[], int inicio, int fim, int valor, int *numComparacoes) {
