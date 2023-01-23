@@ -170,7 +170,62 @@ int quickSort(int vetor[], int tam) {
 	return aux_quickSort(vetor, 0, tam-1);
 }
 
+int max_heapify(int vetor[], int raiz, int tam) {
+	int esq = 2 * raiz + 1; // como o vetor é indexado por 0, em vez de 2 * raiz temos 2 * raiz + 1.
+	int dir = 2 * raiz + 2; // o mesmo para 2 * raiz + 2 em vez de 2 * raiz + 1.
+
+	int maior = raiz;
+	if (esq < tam && vetor[esq] > vetor[raiz])
+		maior = esq;
+	if (dir < tam && vetor[dir] > vetor[maior])
+		maior = dir;
+
+	if (maior != raiz) {
+		troca(vetor + raiz, vetor + maior);
+		return max_heapify(vetor, maior, tam) + 2;
+	}
+
+	return 2;
+	// para simplificar o algoritmo, o max_heapify retorna 2 no caso base,
+	// mesmo que as comparações vetor[esq] > vetor[raiz] e vetor[dir] > vetor[maior]
+	// não sejam realizadas quando trata-se de uma folha. a complexidade do
+	// algoritmo é a mesma.
+}
+
+int build_max_heap(int vetor[], int tam, int i) {
+	if (i < 0)
+		return 0;
+
+	int numComparacoes = 0;
+
+	numComparacoes += max_heapify(vetor, i, tam);
+	numComparacoes += build_max_heap(vetor, tam, i-1);
+
+	return numComparacoes;
+}
+
+int aux_heapSort(int vetor[], int tam) {
+	if (tam < 1)
+		return 0;
+
+	int numComparacoes = 0;
+
+	troca(vetor + 0, vetor + tam-1);
+	numComparacoes += max_heapify(vetor, 0, tam-1);
+
+	numComparacoes += aux_heapSort(vetor, tam-1);
+	
+	return numComparacoes;
+}
+
 int heapSort(int vetor[], int tam) {
-	vetor[0] = 99;
-	return -1;
+	if (tam < 1)
+		return 0;
+
+	int numComparacoes = 0;
+
+	numComparacoes += build_max_heap(vetor, tam, (tam-1)/2);
+	numComparacoes += aux_heapSort(vetor, tam);
+
+	return numComparacoes;
 }

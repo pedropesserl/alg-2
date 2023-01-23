@@ -22,20 +22,13 @@ void imprime_vetor(int *v, int tam) {
 
 int main() {
 	int *vetor;
-	int tam; //indice_pivo;
+	int tam;
 	printf("tamanho do vetor: ");
 	scanf("%d", &tam);
 	if ( !(vetor = malloc(tam * sizeof(int))) ) return 1;
 	vetor = le_vetor(tam);
 
-	// TESTE: QUICKSORT
-	int numComparacoes = quickSort(vetor, tam);
-
-	// TESTE: PARTICIONA
-	/* indice_pivo = -1; */
-	/* int numComparacoes = particiona(vetor, 0, tam-1, &indice_pivo, 0); */
-	/* int numComparacoes = particiona_iterativo(vetor, 0, tam-1, &indice_pivo); */
-	/* printf("indice: %d\n", indice_pivo); */
+	int numComparacoes = heapSort(vetor, tam);
 
 	imprime_vetor(vetor, tam);
 	printf("numero de comparacoes: %d\n", numComparacoes);

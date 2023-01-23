@@ -91,7 +91,7 @@ int main() {
 	}
 	memcpy(aleatorio_, aleatorio, tamVetorGrande * sizeof(int));
 	
-	int vetorPequeno[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int vetorPequeno[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	// FIM: alocação e inicialização dos vetores para teste
 
 	//Para medir o tempo, inclua time.h, e siga o exemplo:
@@ -331,10 +331,10 @@ int main() {
 	printf("Número de comparações: %d.\n\n", numComp);
 	numComp = 0;
 	
-	printf("Buscando pelo número 32500 no vetor ordenado (posição esperada: 32500):\n");
+	printf("Buscando pelo número 32499 no vetor ordenado (posição esperada: 32499):\n");
 	printf("Busca sequencial...\n");
 	start = clock();
-	idxBusca = buscaSequencial(ordenado, tamVetorGrande, 32500, &numComp);
+	idxBusca = buscaSequencial(ordenado, tamVetorGrande, 32499, &numComp);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Pronto. Tempo total: %f s.\n", total);
@@ -344,7 +344,7 @@ int main() {
 
 	printf("Busca binária...\n");
 	start = clock();
-	idxBusca = buscaBinaria(ordenado, tamVetorGrande, 32500, &numComp);
+	idxBusca = buscaBinaria(ordenado, tamVetorGrande, 32499, &numComp);
 	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("Pronto. Tempo total: %f s.\n", total);
