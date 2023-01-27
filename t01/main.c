@@ -94,13 +94,12 @@ int main() {
 	int vetorPequeno[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	// FIM: alocação e inicialização dos vetores para teste
 
-	//Para medir o tempo, inclua time.h, e siga o exemplo:
-	clock_t start, end; //variáveis do tipo clock_t
+	clock_t start, end;
     double total;
 
 	printf("Testes dos algoritmos de ordenação:\n\n");
 
-	printf("Teste de funcionalidade:\n");
+	printf("Teste de funcionalidade -- ordenar em ordem crescente um vetor pequeno (10 posições), inicialmente em ordem decrescente:\n");
 
 	printf("Vetor pequeno: ");
 	imprime_vetor(vetorPequeno, 10);
@@ -147,7 +146,7 @@ int main() {
 	for (i = 0; i < 10; i++) vetorPequeno[i] = 10 - i;
 	printf("\n");
 
-	printf("Teste de tempo:\n");
+	printf("Teste de tempo -- medir o tempo necessário para ordenar três vetores de 65000 posições cada; um já ordenado, um em ordem reversa, e um aleatorizado:\n");
 
 	printf("Insertion sort:\n");
 	printf("	Vetor ordenado...\n");
@@ -184,10 +183,9 @@ int main() {
 	
 	printf("Selection sort:\n");
 	printf("	Vetor ordenado...\n");
-	start = clock(); //start recebe o "ciclo" corrente
+	start = clock();
 	numComp = selectionSort(ordenado_, tamVetorGrande);
-	end = clock();   //end recebe o "ciclo" corrente
-	//o tempo total é a diferença dividia pelos ciclos por segundo
+	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("	Pronto. Tempo total: %f s.\n", total);
 	printf("	Número de comparações: %d.\n\n", numComp);
@@ -217,10 +215,9 @@ int main() {
 
 	printf("Merge sort:\n");
 	printf("	Vetor ordenado...\n");
-	start = clock(); //start recebe o "ciclo" corrente
+	start = clock();
 	numComp = mergeSort(ordenado_, tamVetorGrande);
-	end = clock();   //end recebe o "ciclo" corrente
-	//o tempo total é a diferença dividia pelos ciclos por segundo
+	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("	Pronto. Tempo total: %f s.\n", total);
 	printf("	Número de comparações: %d.\n\n", numComp);
@@ -250,10 +247,9 @@ int main() {
 
 	printf("Quick sort:\n");
 	printf("	Vetor ordenado...\n");
-	start = clock(); //start recebe o "ciclo" corrente
+	start = clock();
 	numComp = quickSort(ordenado_, tamVetorGrande);
-	end = clock();   //end recebe o "ciclo" corrente
-	//o tempo total é a diferença dividia pelos ciclos por segundo
+	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("	Pronto. Tempo total: %f s.\n", total);
 	printf("	Número de comparações: %d.\n\n", numComp);
@@ -283,10 +279,9 @@ int main() {
 
 	printf("Heap sort:\n");
 	printf("	Vetor ordenado...\n");
-	start = clock(); //start recebe o "ciclo" corrente
+	start = clock();
 	numComp = heapSort(ordenado_, tamVetorGrande);
-	end = clock();   //end recebe o "ciclo" corrente
-	//o tempo total é a diferença dividia pelos ciclos por segundo
+	end = clock();
 	total = ((double)end - start)/CLOCKS_PER_SEC;
 	printf("	Pronto. Tempo total: %f s.\n", total);
 	printf("	Número de comparações: %d.\n\n", numComp);

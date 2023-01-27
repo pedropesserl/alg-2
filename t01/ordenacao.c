@@ -171,8 +171,8 @@ int quickSort(int vetor[], int tam) {
 }
 
 int max_heapify(int vetor[], int raiz, int tam) {
-	int esq = 2 * raiz + 1; // como o vetor é indexado por 0, em vez de 2 * raiz temos 2 * raiz + 1.
-	int dir = 2 * raiz + 2; // o mesmo para 2 * raiz + 2 em vez de 2 * raiz + 1.
+	int esq = 2 * raiz + 1; // o filho da esquerda de um nodo na posição i fica na posição 2 * i + 1.
+	int dir = 2 * raiz + 2; // o filho da direita fica na posição 2 * i + 2.
 
 	int maior = raiz;
 	if (esq < tam && vetor[esq] > vetor[raiz])
@@ -186,7 +186,7 @@ int max_heapify(int vetor[], int raiz, int tam) {
 	}
 
 	return 2;
-	// para simplificar o algoritmo, o max_heapify retorna 2 no caso base,
+	// para simplificar o algoritmo, o max_heapify conta 2 comparações no caso base,
 	// mesmo que as comparações vetor[esq] > vetor[raiz] e vetor[dir] > vetor[maior]
 	// não sejam realizadas quando trata-se de uma folha. a complexidade do
 	// algoritmo é a mesma.
