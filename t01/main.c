@@ -303,6 +303,7 @@ int main() {
 	printf("	Número de comparações: %d.\n\n", numComp);
 	
 
+	numComp = 0;
 	printf("Testes dos algoritmos de busca:\n");
 	
 	printf("Buscando pelo número 0 no vetor ordenado (posição esperada: 0):\n");
