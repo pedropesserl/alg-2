@@ -44,7 +44,7 @@ void imprime_vetor(int *v, int tam) {
 }
 
 int main() {
-	srand(0);
+	srand(time(0));
 
 	char nome[MAX_CHAR_NOME];
 	int i;

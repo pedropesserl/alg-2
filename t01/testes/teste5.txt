@@ -27,31 +27,31 @@ Vetor pequeno ordenado: 1 2 3 4 5 6 7 8 9 10
 Teste de tempo -- medir o tempo necessário para ordenar três vetores de 65000 posições cada; um já ordenado, um em ordem reversa, e um aleatorizado:
 Insertion sort:
 	Vetor ordenado...
-	Pronto. Tempo total: 0.001293 s.
+	Pronto. Tempo total: 0.001310 s.
 	Número de comparações: 64999.
 
 	Vetor em ordem reversa...
-	Pronto. Tempo total: 18.531942 s.
+	Pronto. Tempo total: 18.940570 s.
 	Número de comparações: 2112467500.
 
 	Vetor aleatório...
-	Pronto. Tempo total: 9.238059 s.
-	Número de comparações: 1053225975.
+	Pronto. Tempo total: 9.371714 s.
+	Número de comparações: 1052849242.
 
 Restabelecendo cópias...
 Pronto.
 
 Selection sort:
 	Vetor ordenado...
-	Pronto. Tempo total: 17.436307 s.
+	Pronto. Tempo total: 16.982048 s.
 	Número de comparações: 2112467500.
 
 	Vetor em ordem reversa...
-	Pronto. Tempo total: 16.875860 s.
+	Pronto. Tempo total: 16.943022 s.
 	Número de comparações: 2112467500.
 
 	Vetor aleatório...
-	Pronto. Tempo total: 16.218597 s.
+	Pronto. Tempo total: 16.368850 s.
 	Número de comparações 2112467500.
 
 Restabelecendo cópias...
@@ -59,15 +59,15 @@ Pronto.
 
 Merge sort:
 	Vetor ordenado...
-	Pronto. Tempo total: 0.010505 s.
+	Pronto. Tempo total: 0.010457 s.
 	Número de comparações: 1039464.
 
 	Vetor em ordem reversa...
-	Pronto. Tempo total: 0.010401 s.
+	Pronto. Tempo total: 0.010394 s.
 	Número de comparações: 1039464.
 
 	Vetor aleatório...
-	Pronto. Tempo total: 0.014310 s.
+	Pronto. Tempo total: 0.014472 s.
 	Número de comparações: 1039464.
 
 Restabelecendo cópias...
@@ -75,39 +75,39 @@ Pronto.
 
 Quick sort:
 	Vetor ordenado...
-	Pronto. Tempo total: 21.338888 s.
+	Pronto. Tempo total: 21.226033 s.
 	Número de comparações: 2112532499.
 
 	Vetor em ordem reversa...
-	Pronto. Tempo total: 17.698364 s.
+	Pronto. Tempo total: 17.614560 s.
 	Número de comparações: 2112532499.
 
 	Vetor aleatório...
-	Pronto. Tempo total: 0.013646 s.
-	Número de comparações: 1257285.
+	Pronto. Tempo total: 0.014267 s.
+	Número de comparações: 1357972.
 
 Restabelecendo cópias...
 Pronto.
 
 Heap sort:
 	Vetor ordenado...
-	Pronto. Tempo total: 0.013146 s.
+	Pronto. Tempo total: 0.013215 s.
 	Número de comparações: 2115974.
 
 	Vetor em ordem reversa...
-	Pronto. Tempo total: 0.012626 s.
+	Pronto. Tempo total: 0.012842 s.
 	Número de comparações: 1933650.
 
 	Vetor aleatório...
-	Pronto. Tempo total: 0.015849 s.
-	Número de comparações: 2027194.
+	Pronto. Tempo total: 0.016008 s.
+	Número de comparações: 2027764.
 
 Testes dos algoritmos de busca:
 Buscando pelo número 0 no vetor ordenado (posição esperada: 0):
 Busca sequencial...
-Pronto. Tempo total: 0.000451 s.
+Pronto. Tempo total: 0.000447 s.
 Posição: 0.
-Número de comparações: 2092194.
+Número de comparações: 65000.
 
 Busca binária...
 Pronto. Tempo total: 0.000000 s.
@@ -116,7 +116,7 @@ Número de comparações: 29.
 
 Buscando pelo número 32499 no vetor ordenado (posição esperada: 32499):
 Busca sequencial...
-Pronto. Tempo total: 0.000219 s.
+Pronto. Tempo total: 0.000222 s.
 Posição: 32499.
 Número de comparações: 32501.
 
@@ -132,13 +132,13 @@ Posição: 64999.
 Número de comparações: 1.
 
 Busca binária...
-Pronto. Tempo total: 0.000001 s.
+Pronto. Tempo total: 0.000000 s.
 Posição: 64999.
 Número de comparações: 31.
 
 Buscando pelo número 65000 no vetor ordenado (posição esperada: -1):
 Busca sequencial...
-Pronto. Tempo total: 0.000448 s.
+Pronto. Tempo total: 0.000447 s.
 Posição: -1.
 Número de comparações: 65000.
 
