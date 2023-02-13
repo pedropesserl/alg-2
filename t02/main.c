@@ -35,19 +35,17 @@ int vetor_valido(int vbin[], presente_t presentes[], int tam, int p_max) {
 	return peso_atual <= p_max;
 }
 
-int vetores_binarios(int vbin[], presente_t presentes[], int tam, int p_max, int i) {
+void vetores_binarios(int vbin[], presente_t presentes[], int tam, int p_max, int i) {
 	if (i == tam) {
-		if (vetor_valido(vbin, presentes, tam, p_max)) {
+		if (vetor_valido(vbin, presentes, tam, p_max))
 			imprime_vetor(vbin, tam);
-			return 1;
-		}
-		return 0;
+		return;
 	}
 
 	vbin[i] = 0;
-	return vetores_binarios(vbin, presentes, tam, p_max, i+1);
+	vetores_binarios(vbin, presentes, tam, p_max, i+1);
 	vbin[i] = 1;
-	return vetores_binarios(vbin, presentes, tam, p_max, i+1);
+	vetores_binarios(vbin, presentes, tam, p_max, i+1);
 }
 
 void resolve_papai_noel(int tam, int p_max, presente_t presentes[]) {
