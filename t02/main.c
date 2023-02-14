@@ -2,13 +2,13 @@
 #include <stdlib.h>
 
 typedef struct {
-	double valor;
-	double peso;
+	int valor;
+	int peso;
 } presente_t;
 
 void le_entrada(presente_t presentes[], int tam) {
 	for (int i = 0; i < tam; i++)
-		scanf("%lf %lf", &presentes[i].valor, &presentes[i].peso);
+		scanf("%d %d", &presentes[i].valor, &presentes[i].peso);
 }
 
 void imprime_vetor(int vetor[], int tam) {
@@ -17,8 +17,8 @@ void imprime_vetor(int vetor[], int tam) {
 	printf("%d\n", vetor[tam-1]);
 }
 
-void trata_solucao(int vbin[], presente_t presentes[], int tam, double *valor_maximo, int indices_solucao[], int *tam_solucao) {
-	double valor_total = 0;
+void trata_solucao(int vbin[], presente_t presentes[], int tam, int *valor_maximo, int indices_solucao[], int *tam_solucao) {
+	int valor_total = 0;
 
 	for (int i = 0; i < tam; i++)
 		if (vbin[i])
@@ -38,7 +38,7 @@ void trata_solucao(int vbin[], presente_t presentes[], int tam, double *valor_ma
 }
 
 int vetor_valido(int vbin[], presente_t presentes[], int tam, int p_max) {
-	double peso_presentes = 0;
+	int peso_presentes = 0;
 
 	for (int i = 0; i < tam; i++)
 		if (vbin[i])
@@ -47,7 +47,7 @@ int vetor_valido(int vbin[], presente_t presentes[], int tam, int p_max) {
 	return peso_presentes <= p_max;
 }
 
-void acha_solucoes(int vbin[], presente_t presentes[], int tam, int p_max, double *valor_maximo, int indices_solucao[], int *tam_solucao, int i) {
+void acha_solucoes(int vbin[], presente_t presentes[], int tam, int p_max, int *valor_maximo, int indices_solucao[], int *tam_solucao, int i) {
 	// essa função implementa o backtracking do algoritmo criando recursivamente todos os
 	// possíveis vetores binários de tamanho tam
 
@@ -68,7 +68,7 @@ void acha_solucoes(int vbin[], presente_t presentes[], int tam, int p_max, doubl
 }
 
 void resolve_papai_noel(int tam, int p_max, presente_t presentes[]) {
-	double valor_solucao = 0;
+	int valor_solucao = 0;
 	int tam_solucao;
 	int indices_solucao[tam];
 	int vbin[tam];
@@ -76,13 +76,13 @@ void resolve_papai_noel(int tam, int p_max, presente_t presentes[]) {
 	acha_solucoes(vbin, presentes, tam, p_max, &valor_solucao, indices_solucao, &tam_solucao, 0);
 
 	imprime_vetor(indices_solucao, tam_solucao);
-	printf("%lf\n", valor_solucao);
+	printf("%d\n", valor_solucao);
 }
 
 int main(void) {
 	int n;
-	double p_max;
-	scanf("%d %lf", &n, &p_max);
+	int p_max;
+	scanf("%d %d", &n, &p_max);
 	presente_t presentes[n];
 	le_entrada(presentes, n);
 
