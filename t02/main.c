@@ -17,10 +17,18 @@ void le_entrada(presente_t presentes[], int tam) {
 		scanf("%d %d", &presentes[i].valor, &presentes[i].peso);
 }
 
-void imprime_vetor(int vetor[], int tam) {
-	for (int i = 0; i < tam; i++)
-		printf("%d ", vetor[i]);
-	printf("\n");
+void imprime_solucao(int vbin[], presente_t presentes[], int tam) {
+	int valor_total = 0, peso_total = 0;
+
+	for (int i = 0; i < tam; i++) {
+		printf("%d ", vbin[i]);
+		if (vbin[i]) {
+			valor_total += presentes[i].valor;
+			peso_total += presentes[i].peso;
+		}
+	}
+
+	printf("valor total: %d, peso total: %d.\n", valor_total, peso_total);
 }
 
 int vetor_valido(int vbin[], presente_t presentes[], int tam, int p_max) {
@@ -38,7 +46,7 @@ int vetor_valido(int vbin[], presente_t presentes[], int tam, int p_max) {
 void vetores_binarios(int vbin[], presente_t presentes[], int tam, int p_max, int i) {
 	if (i == tam) {
 		if (vetor_valido(vbin, presentes, tam, p_max))
-			imprime_vetor(vbin, tam);
+			imprime_solucao(vbin, presentes, tam);
 		return;
 	}
 
